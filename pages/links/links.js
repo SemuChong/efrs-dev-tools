@@ -24,7 +24,8 @@ Page({
         lbl: '$'
       }
     ],
-    index: 0
+    index: 0,
+    httpReqUrl: '/wxLittle.do'
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -37,23 +38,31 @@ Page({
     console.log('表单提交，携带值为', data)
     let qType = data.objectArray[data.index].lbl
     let qText = e.detail.value.input
-    let q = 
-    {
-      "qType": qType,
-      "qText": qText
-    }
-    console.log('请求参数为', q)
     this.setData({
-      resStr: this.getJson(q),
+      resStr: this.getJson(qType, qText),
     })
   },
 
-  getJson: function (q) {
+  getJson: function (qType, qText) {
     let ret = ''
-    try{
-      // todo
-      ret = JSON.stringify(q)
-    }finally{}
+    let reqUrl = this.data.httpReqUrl;
+    wx.request({
+      url: reqUrl,
+      method: 'POST',
+      data: {
+        "qType": qType,
+        "qText": qText
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+        try {
+          ret = JSON.stringify(q)
+        } finally { }
+      }
+    })
     return ret
   },
 
