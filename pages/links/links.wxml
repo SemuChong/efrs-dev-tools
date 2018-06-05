@@ -1,2 +1,13 @@
-<!--pages/links/links.wxml-->
-<text>pages/links/links.wxml</text>
+<form bindsubmit="formSubmit">
+  <view class="flex-wrp">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" >
+      <view class="picker">{{array[index]}}</view>
+    </picker>
+    <input name="input" placeholder=" Please input here" focus="true" class="input"/>
+    <button formType="submit" plain="true" class="btn">搜索</button>
+  </view>
+  <view class="block">
+    <view class="block-title">查询结果</view>
+    <view class="block-desc">{{resStr}}</view>
+  </view>
+</form>

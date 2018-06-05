@@ -1,11 +1,60 @@
 // pages/links/links.js
 Page({
-
+  
   /**
    * 页面的初始数据
    */
   data: {
-  
+    resStr: '',
+    array: ['实时', '历史', '询汇'],
+    objectArray: [
+      {
+        id: 0,
+        name: '实时',
+        lbl: '#'
+      },
+      {
+        id: 1,
+        name: '历史',
+        lbl: '&'
+      },
+      {
+        id: 2,
+        name: '询汇',
+        lbl: '$'
+      }
+    ],
+    index: 0
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value,
+    })
+  },
+  formSubmit: function (e) {
+    let data = this.data
+    console.log('表单提交，携带值为', data)
+    let qType = data.objectArray[data.index].lbl
+    let qText = e.detail.value.input
+    let q = 
+    {
+      "qType": qType,
+      "qText": qText
+    }
+    console.log('请求参数为', q)
+    this.setData({
+      resStr: this.getJson(q),
+    })
+  },
+
+  getJson: function (q) {
+    let ret = ''
+    try{
+      // todo
+      ret = JSON.stringify(q)
+    }finally{}
+    return ret
   },
 
   /**
