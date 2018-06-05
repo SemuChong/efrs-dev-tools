@@ -1,12 +1,36 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/checkpoint/cp",
+    "pages/links/links"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "EFRS",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "联系人",
+        "iconPath": "images/phone_d.png",
+        "selectedIconPath": "images/phone.png"
+      },
+      {
+        "pagePath": "pages/checkpoint/cp",
+        "text": "检查点",
+        "iconPath": "images/label_d.png",
+        "selectedIconPath": "images/label.png"
+      },
+      {
+        "pagePath": "pages/links/links",
+        "text": "其他",
+        "iconPath": "images/calc_d.png",
+        "selectedIconPath": "images/calc.png"
+      }
+    ]
   }
 }
