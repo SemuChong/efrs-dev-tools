@@ -4,51 +4,31 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '欢迎光临',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    contacts: [
+      { name: '顾丹铭', phoneNo: '13564227784' },
+      { name: '曹羽', phoneNo: '18964699357' },
+      { name: '吴冲冲', phoneNo: '13774266374' },
+      { name: '夏敏', phoneNo: '18516523026' },
+      { name: '李恩典', phoneNo: '13526618949' },
+      { name: '白鹏飞', phoneNo: '13061818086' },
+      { name: '刘广立', phoneNo: '18016386617' },
+      { name: '林苏燕', phoneNo: '17621234268' },
+      { name: '冯晓波', phoneNo: '18101819977' },
+      { name: '黄肖滢', phoneNo: '18502193018' },
+      { name: '章文辉', phoneNo: '13122231223' },
+      { name: '施文敬', phoneNo: '17621942010' },
+      { name: '孙海龙', phoneNo: '15237411727' },
+      { name: '李展', phoneNo: '13167008520' },
+      { name: '陆景丽', phoneNo: '18896540546' }
+    ],
+    scrollTop: 100
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  call: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.id,
     })
   }
 })
