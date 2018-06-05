@@ -25,7 +25,7 @@ Page({
       }
     ],
     index: 0,
-    httpReqUrl: '/wxLittle.do'
+    httpReqUrl: 'https://koopaheroes.free.ngrok.cc/wxLittle.do'
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -38,14 +38,12 @@ Page({
     console.log('表单提交，携带值为', data)
     let qType = data.objectArray[data.index].lbl
     let qText = e.detail.value.input
-    this.setData({
-      resStr: this.getJson(qType, qText),
-    })
+    this.getJson(this, qType, qText)
   },
 
-  getJson: function (qType, qText) {
+  getJson: function (_this, qType, qText) {
     let ret = ''
-    let reqUrl = this.data.httpReqUrl;
+    let reqUrl = _this.data.httpReqUrl;
     wx.request({
       url: reqUrl,
       method: 'POST',
@@ -61,9 +59,16 @@ Page({
         try {
           ret = JSON.stringify(q)
         } finally { }
+      },
+      fail: function (e) {
+        ret = '查询超时，请稍后重试'
+      },
+      complete: function(){
+        _this.setData({
+          resStr: ret,
+        })
       }
     })
-    return ret
   },
 
   /**
