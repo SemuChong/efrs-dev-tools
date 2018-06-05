@@ -8,7 +8,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#6C6C6C",
-    "navigationBarTitleText": "EFRS",
+    "navigationBarTitleText": "EFRS工作站S",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
